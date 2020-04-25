@@ -17,9 +17,7 @@ function App() {
 
   
 export const ExampleForm: React.FunctionComponent = () => {
-    const isRequired = new IsRequired();
-    const isEmail = new IsEmail();
-    const isValidValue = new checkValueWithExternalService();
+    const {isRequired, isEmail, isValidValue} = createValidators()
 
     const fields: Fields = {
         info: {
@@ -115,6 +113,14 @@ function callToExternalService() : Promise<boolean>{
             resolve(false);
         }, 2000);
     });
+}
+
+function createValidators(){
+    return {
+        isRequired: new IsRequired(),
+        isEmail: new IsEmail(),
+        isValidValue: new checkValueWithExternalService()
+    };
 }
 
 export default App;
